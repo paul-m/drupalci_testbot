@@ -9,7 +9,7 @@ namespace DrupalCI\Console\Command;
 
 use DrupalCI\Console\Helpers\ConfigHelper;
 use DrupalCI\Console\Output;
-use DrupalCI\Job\CodeBase\JobCodeBase;
+use DrupalCI\Job\CodeBase\JobCodebase;
 use DrupalCI\Job\Definition\JobDefinition;
 use DrupalCI\Job\Results\JobResults;
 use DrupalCI\Plugin\JobTypes\JobInterface;

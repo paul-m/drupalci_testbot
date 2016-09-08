@@ -8,6 +8,8 @@
 namespace DrupalCI\Tests;
 
 use DrupalCI\Console\Output;
+use DrupalCI\Plugin\JobTypes\JobInterface;
+use Symfony\Component\Console\Output\OutputInterface;
 
 class DrupalCITestCase extends \PHPUnit_Framework_TestCase {
 
@@ -22,9 +24,9 @@ class DrupalCITestCase extends \PHPUnit_Framework_TestCase {
   protected $job;
 
   public function setUp() {
-    $this->output = $this->getMock('Symfony\Component\Console\Output\OutputInterface');
+    $this->output = $this->getMock(OutputInterface::class);
     Output::setOutput($this->output);
-    $this->job = $this->getMock('DrupalCI\Plugin\JobTypes\JobInterface');
+    $this->job = $this->getMock(JobInterface::class);
   }
 
 }

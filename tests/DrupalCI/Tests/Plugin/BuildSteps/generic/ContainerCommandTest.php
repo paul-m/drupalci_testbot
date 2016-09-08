@@ -8,8 +8,13 @@
 namespace DrupalCI\Tests\Plugin\BuildSteps\generic;
 
 use Docker\Container;
+use Docker\Docker;
+use Docker\Manager\ContainerManager;
 use DrupalCI\Plugin\BuildSteps\generic\ContainerCommand;
+use DrupalCI\Plugin\JobTypes\JobInterface;
 use DrupalCI\Tests\DrupalCITestCase;
+use GuzzleHttp\Message\ResponseInterface;
+use GuzzleHttp\Stream\StreamInterface;
 
 /**
  * @coversDefaultClass DrupalCI\Plugin\BuildSteps\generic\ContainerCommand
@@ -23,14 +28,14 @@ class ContainerCommandTest extends DrupalCITestCase {
     $cmd = 'test_command test_argument';
     $instance = new Container([]);
 
-    $body = $this->getMock('GuzzleHttp\Stream\StreamInterface');
+    $body = $this->getMock(StreamInterface::class);
 
-    $response = $this->getMock('GuzzleHttp\Message\ResponseInterface');
+    $response = $this->getMock(ResponseInterface::class);
     $response->expects($this->once())
       ->method('getBody')
       ->will($this->returnValue($body));
 
-    $container_manager = $this->getMockBuilder('Docker\Manager\ContainerManager')
+    $container_manager = $this->getMockBuilder(ContainerManager::class)
       ->disableOriginalConstructor()
       ->getMock();
     $container_manager->expects($this->once())
@@ -47,7 +52,7 @@ class ContainerCommandTest extends DrupalCITestCase {
       ->method('execinspect')
       ->will($this->returnValue((object) ['ExitCode' => 0]));
 
-    $docker = $this->getMockBuilder('Docker\Docker')
+    $docker = $this->getMockBuilder(Docker::class)
       ->disableOriginalConstructor()
       ->setMethods(['getContainerManager'])
       ->getMock();
@@ -55,7 +60,7 @@ class ContainerCommandTest extends DrupalCITestCase {
       ->method('getContainerManager')
       ->will($this->returnValue($container_manager));
 
-    $job = $this->getMockBuilder('DrupalCI\Plugin\JobTypes\JobInterface')
+    $job = $this->getMockBuilder(JobInterface::class)
       ->getMockForAbstractClass();
     $job->expects($this->once())
       ->method('getDocker')

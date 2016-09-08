@@ -8,7 +8,7 @@
 namespace DrupalCI\Job\CodeBase;
 
 use DrupalCI\Console\Output;
-use DrupalCI\Job\CodeBase\JobCodeBase;
+use DrupalCI\Job\CodeBase\JobCodebase;
 use GuzzleHttp\Client;
 use GuzzleHttp\ClientInterface;
 
@@ -166,7 +166,7 @@ class Patch
 
   /**
    * @param string[] $patch_details
-   * @param JobCodeBase $codebase
+   * @param JobCodebase $codebase
    */
   public function __construct($patch_details, $codebase)
   {

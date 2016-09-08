@@ -13,7 +13,7 @@ use DrupalCI\Injectable;
 use DrupalCI\InjectableTrait;
 use DrupalCI\Job\Results\Artifacts\BuildArtifact;
 use DrupalCI\Job\Results\Artifacts\BuildArtifactList;
-use DrupalCI\Job\CodeBase\JobCodeBase;
+use DrupalCI\Job\CodeBase\JobCodebase;
 use DrupalCI\Job\Definition\JobDefinition;
 use DrupalCI\Job\Results\JobResults;
 use DrupalCIResultsApi\Api;
@@ -78,7 +78,7 @@ class JobBase extends ContainerBase implements JobInterface, Injectable {
    */
   protected $jobCodebase;
   public function getJobCodebase() {  return $this->jobCodebase;  }
-  public function setJobCodebase(JobCodeBase $job_codebase)  {  $this->jobCodebase = $job_codebase;  }
+  public function setJobCodebase(JobCodebase $job_codebase)  {  $this->jobCodebase = $job_codebase;  }
 
   /**
    * Stores the results object for this job
