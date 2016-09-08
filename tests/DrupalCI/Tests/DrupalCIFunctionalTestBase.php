@@ -125,8 +125,15 @@ abstract class DrupalCIFunctionalTestBase extends \PHPUnit_Framework_TestCase {
     if (empty($this->dciConfig)) {
       throw new \PHPUnit_Framework_Exception('You must provide ' . get_class($this) . '::$dciConfig.');
     }
-    $this->configLoad('blank');
-    $this->configSet($this->dciConfig);
+    // Skip a test that can't load 'blank.' We likely don't have the proper test
+    // environment for an application test, but that's not a failure.
+    try {
+      $this->configLoad('blank');
+      $this->configSet($this->dciConfig);
+    }
+    catch (\PHPUnit_Framework_Exception $e) {
+      $this->markTestSkipped('This test needs a fixture environment.');
+    }
     $app = $this->getConsoleApp();
     $app->setAutoExit(FALSE);
   }

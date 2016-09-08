@@ -15,6 +15,12 @@ class PullCommandTest extends CommandTestBase {
    * @coversNothing
    */
   public function testPull() {
+    // Mark this test skipped if we're not in the proper environment.
+    $wrappers = stream_get_wrappers();
+    if (!in_array('unix', $wrappers)) {
+      $this->markTestSkipped('This test needs a fixture environment.');
+    }
+
     $c = $this->getConsoleApp();
     $command = $c->find('pull');
     $commandTester = new CommandTester($command);
