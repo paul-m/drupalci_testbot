@@ -1,5 +1,6 @@
 <?php
-use DrupalCI\Plugin\Preprocess\definition\JUnitXml;
+
+use DrupalCI\Plugin\Preprocess\definition\JunitXml;
 use DrupalCI\Tests\Plugin\Preprocess\definition\DefinitionPreprocessorTestBase;
 
 /**
