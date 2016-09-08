@@ -12,7 +12,7 @@ namespace DrupalCI\Plugin\Preprocess\definition;
 /**
  * @PluginID("junitxml")
  */
-class JunitXml {
+class JUnitXml {
 
   /**
    * {@inheritdoc}
